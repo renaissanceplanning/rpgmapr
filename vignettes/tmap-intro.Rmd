@@ -1,0 +1,135 @@
+---
+title: "tmap-intro"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tmap-intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The function currently only works with the interactive mode in tmap, as that is is its primary use case. A static mode may be worth developing but as we mostly use tmap for interactive purposes and ESRI for static it may be wasted effort. 
+
+The package will create a base map without loading tmap but to use the base map you should load tmap and set it to interactive.
+
+```{r setup}
+library(rpgmapr)
+library(tmap);tmap_mode("view")
+library(tidycensus)
+library(tidyverse)
+library(osmdata)
+
+# pull sample data for mapping
+
+miami <- get_acs(
+  state = "FL",
+  county = "Miami-Dade",
+  geography = "tract",
+  variables = "B19013_001",
+  geometry = TRUE,
+  year = 2020
+) %>% 
+  filter(!is.na(estimate))
+
+cycleways <- opq('Miami-Dade') %>%
+  add_osm_feature(key = 'highway', value = 'cycleway') %>% 
+  osmdata_sf() %>% 
+  .$osm_lines %>% 
+  select(osm_id, geometry) 
+
+#create random ridership numbers
+
+ridership <- rnorm(nrow(cycleways), mean = 1000, sd = 200)
+
+cycleways <- cycleways %>% 
+  mutate(ridership = sample(ridership))
+```
+
+### Basic Usage
+
+The main use is to create a simple base map object that can be passed to further processing. This is as easy as the code below
+
+```{r}
+base <- create_tmap_base()
+```
+
+This creates a flat base map layer that can used similarly to the below code.
+
+```{r}
+base + 
+  tm_shape(miami) + 
+  tm_polygons(col = "estimate",
+              palette = "plasma",
+              alpha = 0.5,
+              n = 10,
+              lwd = 0.5)
+```
+
+However these flat base map keep all elements below the displayed data, more complex base map objects can be created with minimal effort.
+
+```{r}
+base <- create_tmap_base(
+  type = "base_detailed"
+)
+
+base + 
+  tm_shape(miami) + 
+  tm_polygons(col = "estimate",
+              palette = "plasma",
+              alpha = 0.5,
+              n = 10,
+              lwd = 0.5)
+```
+
+For maps of roadways and other line features roads can be turned off to increase readability.
+
+```{r}
+base <- create_tmap_base(
+  type = "base_detailed",
+  lines = FALSE
+)
+
+base + 
+  tm_shape(cycleways) + 
+  tm_lines(col = "ridership",
+           palette = "plasma",
+           n = 10,
+           lwd = 2)
+```
+
+Multiple layers can be used as well. For these complicated maps it may be worth using a simpler base map, see `TODO insert url` for all available styles.
+
+```{r}
+base <- create_tmap_base(
+  type = "base_simple",
+  lines = FALSE
+)
+
+base + 
+  tm_shape(miami) + 
+  tm_polygons(col = "estimate",
+              palette = "plasma",
+              alpha = 0.5,
+              n = 10,
+              lwd = 0.5) +
+  tm_shape(cycleways) + 
+  tm_lines(lwd = "ridership",
+           palette = "plasma",
+           scale = 3)
+```
+
+
+
+
+
+
+
+
+
+

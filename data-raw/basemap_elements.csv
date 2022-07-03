@@ -1,0 +1,8 @@
+library,style,element,url
+tmap,atlas,base_full,https://api.mapbox.com/styles/v1/renplan/cl4olqb9v000514ldljtf1omt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+tmap,atlas,base_detailed,https://api.mapbox.com/styles/v1/renplan/cl4zupz4n000u14mv38mp0q2l/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+tmap,atlas,details,https://api.mapbox.com/styles/v1/renplan/cl4zuotax001o15nyt6lnvssc/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+tmap,atlas,lines,https://api.mapbox.com/styles/v1/renplan/cl4zu0pxx002015nwqeasn33i/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+tmap,atlas,labels,https://api.mapbox.com/styles/v1/renplan/cl4ztwaxq000r14mv74t1tktp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+tmap,atlas,base_simple,https://api.mapbox.com/styles/v1/renplan/cl513hqsd000h14la0kzbzbci/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+mapdeck,atlas,full_base,mapbox://styles/renplan/cl4olqb9v000514ldljtf1omt
