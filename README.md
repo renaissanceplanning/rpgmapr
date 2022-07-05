@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of rpgmapr is to …
+The goal of `rpgmapr` is to provide a set of functions to create
+consistently styles base maps for use in R documents and applications
 
 ## Installation
 
@@ -20,36 +21,68 @@ devtools::install_github("renaissanceplanning/rpgmapr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+A simple basemap can be created in tmap with a general call:
 
 ``` r
 library(rpgmapr)
-## basic example code
+
+base <- create_tmap_base()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+This base can be passed to create styled maps:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+base + 
+  tm_shape(miami) + 
+  tm_polygons(col = "estimate",
+              palette = "plasma",
+              alpha = 0.5,
+              n = 10,
+              lwd = 0.5)
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+<img src="data-raw/example_1.jpg" title="html screenshot" alt="html screenshot" width="100%" />
 
-You can also embed plots, for example:
+A more styled version, keeping labels and lines on top of the data,
+requires minimal additional code
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+``` r
+base <- create_tmap_base(
+  type = "base_detailed"
+)
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+base + 
+  tm_shape(miami) + 
+  tm_polygons(col = "estimate",
+              palette = "plasma",
+              alpha = 0.5,
+              n = 10,
+              lwd = 0.5)
+```
+
+<img src="data-raw/example_2.jpg" title="html screenshot" alt="html screenshot" width="100%" />
+
+The full inventory of mapbox elements is kept in the `basemap_elements`
+object which is displayed below and can be used for custom calls.
+
+``` r
+basemap_elements
+#>   library style       element
+#> 1    tmap atlas     base_full
+#> 2    tmap atlas base_detailed
+#> 3    tmap atlas       details
+#> 4    tmap atlas         lines
+#> 5    tmap atlas        labels
+#> 6    tmap atlas   base_simple
+#> 7 mapdeck atlas     full_base
+#>                                                                                                                                                                                                  url
+#> 1 https://api.mapbox.com/styles/v1/renplan/cl4olqb9v000514ldljtf1omt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 2 https://api.mapbox.com/styles/v1/renplan/cl4zupz4n000u14mv38mp0q2l/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 3 https://api.mapbox.com/styles/v1/renplan/cl4zuotax001o15nyt6lnvssc/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 4 https://api.mapbox.com/styles/v1/renplan/cl4zu0pxx002015nwqeasn33i/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 5 https://api.mapbox.com/styles/v1/renplan/cl4ztwaxq000r14mv74t1tktp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 6 https://api.mapbox.com/styles/v1/renplan/cl513hqsd000h14la0kzbzbci/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
+#> 7                                                                                                                                                  mapbox://styles/renplan/cl4olqb9v000514ldljtf1omt
+```
+
+Further examples can be found the in vignettes.
