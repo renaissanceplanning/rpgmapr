@@ -82,12 +82,12 @@ create_tmap_base <- function(
 
     if(lines == TRUE){
       base <- base +
-        tmap::tm_tiles(lines_url, group = "Roads", zindex = 700)
+        tmap::tm_tiles(lines_url, group = "Roads", zindex = 490)
     }
 
     if(labels == TRUE){
       base <- base +
-        tmap::tm_tiles(labels_url, group = "Labels", zindex = 725)
+        tmap::tm_tiles(labels_url, group = "Labels", zindex = 501)
     }
 
     return(base)
