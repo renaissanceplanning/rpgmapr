@@ -6,3 +6,9 @@ tmap,atlas,lines,https://api.mapbox.com/styles/v1/renplan/cl4zu0pxx002015nwqeasn
 tmap,atlas,labels,https://api.mapbox.com/styles/v1/renplan/cl4ztwaxq000r14mv74t1tktp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
 tmap,atlas,base_simple,https://api.mapbox.com/styles/v1/renplan/cl513hqsd000h14la0kzbzbci/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVucGxhbiIsImEiOiJjaWgzcHdjOTIweTJvdzdtNWxlYnZ5MXZjIn0.zMsUwMAoEu6DZvd7IYVtjg
 mapdeck,atlas,full_base,mapbox://styles/renplan/cl4olqb9v000514ldljtf1omt
+tmap_static,atlas,labels,mapbox://styles/renplan/cl4ztwaxq000r14mv74t1tktp
+tmap_static,atlas,details,mapbox://styles/renplan/cl4zuotax001o15nyt6lnvssc
+tmap_static,atlas,base_detailed,mapbox://styles/renplan/cl4zupz4n000u14mv38mp0q2l
+tmap_static,atlas,lines,mapbox://styles/renplan/cl4zu0pxx002015nwqeasn33i
+tmap_static,atlas,base_simple,mapbox://styles/renplan/cl513hqsd000h14la0kzbzbci
+tmap_static,atlas,full_base,mapbox://styles/renplan/cl4olqb9v000514ldljtf1omt
